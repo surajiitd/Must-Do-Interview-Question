@@ -13,8 +13,16 @@ void DFS(vector<vector<int>> &a,int i,int j)
     if(i<0 || i>n-1 || j<0 || j>m-1 || a[i][j]==0)  return;
 
     a[i][j] = 0;
-    DFS(a,i+1,j);DFS(a,i,j+1);DFS(a,i-1,j);DFS(a,i,j-1);
-    DFS(a,i+1,j+1);DFS(a,i-1,j-1);DFS(a,i+1,j-1);DFS(a,i-1,j+1);
+    
+    // DFS(a,i+1,j);DFS(a,i,j+1);DFS(a,i-1,j);DFS(a,i,j-1);
+    // DFS(a,i+1,j+1);DF0S(a,i-1,j-1);DFS(a,i+1,j-1);DFS(a,i-1,j+1);
+    //           ******OR****
+    int d[] = {0,1,  1,0,  0,-1,  -1,0,  1,1,  1,-1,  -1,1,  -1,-1 };
+    for(int x=0;x<16;x+=2)
+    {
+        DFS(a,i+d[x],j+d[x+1]);
+    }
+    //////end///////////
     
 }
 int findIslands(vector<vector<int>> a, int n, int m) {
